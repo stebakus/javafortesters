@@ -1,6 +1,6 @@
 package com.andrey.sandbox;
 
-public class MyFirstProgram {
+class MyFirstProgram {
 
 	public static void main (String[] args) {
 
