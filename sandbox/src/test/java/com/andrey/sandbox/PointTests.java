@@ -8,9 +8,10 @@ public class PointTests {
 
   @Test
   public void distance() {
-    Point AB = new Point(1,1,5,5);
+    Point p1 = new Point(1,1);
+    Point p2 = new Point(5,5);
     //assert AB.distance() == 0;
-    Assert.assertEquals(AB.distance(), 5.656854249492381);
+    Assert.assertEquals(p1.distance(p2), 5.656854249492381);
   }
 
 }
