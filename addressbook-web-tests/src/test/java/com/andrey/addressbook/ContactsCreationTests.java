@@ -40,7 +40,6 @@ public class ContactsCreationTests {
   }
 
   private void submitContactCreation() {
-    wd.findElement(By.name("theform")).click();
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
