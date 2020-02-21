@@ -8,7 +8,7 @@ public class ContactsCreationTests extends TestBase{
   @Test
   public void testContactsCreation() throws Exception {
     app.getNavigationHelper().gotoAddNewPage();
-    app.getContactHelper().fillContactForm(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA", "3214192300", "andreybegishev@gmail.com"));
+    app.getContactHelper().fillContactForm(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA", "3214192300", "andreybegishev@gmail.com", "test1"), true);
     app.getContactHelper().submitContactCreation();
     app.getNavigationHelper().returnToHomePage();
   }
