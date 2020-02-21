@@ -17,9 +17,6 @@ public class ApplicationManager {
   private ContactHelper contactHelper;
   private String browser;
 
-  public ApplicationManager() {
-  }
-
   public ApplicationManager(String browser) {
     this.browser = browser;
   }

@@ -1,6 +1,7 @@
 package com.andrey.addressbook.appmanager;
 
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -21,7 +22,8 @@ public class ContactHelper extends HelperBase {
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsData.getGroup());
-    } else {
+
+    } else{
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }

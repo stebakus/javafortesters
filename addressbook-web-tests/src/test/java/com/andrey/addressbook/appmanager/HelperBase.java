@@ -1,11 +1,12 @@
 package com.andrey.addressbook.appmanager;
 
+import com.andrey.addressbook.tests.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class HelperBase {
+public class HelperBase extends TestBase {
   protected WebDriver wd;
 
   public HelperBase(WebDriver wd) {

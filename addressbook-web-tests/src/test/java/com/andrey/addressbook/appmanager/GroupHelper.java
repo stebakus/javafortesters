@@ -13,7 +13,7 @@ public class GroupHelper extends HelperBase{
   }
 
   public void returnToGroupPage() {
-    click(By.linkText("Logout"));
+    wd.findElement(By.linkText("group page")).click();
   }
 
   public void submitGroupCreation() {
