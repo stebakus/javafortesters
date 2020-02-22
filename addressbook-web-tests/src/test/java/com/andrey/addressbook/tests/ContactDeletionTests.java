@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class ContactDeletionTests extends TestBase {
 
   @Test
-  public void testContactDeletionTests() throws Exception {
+  public void testContactDeletion() throws Exception {
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
       app.getContactHelper().fillContactForm(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",

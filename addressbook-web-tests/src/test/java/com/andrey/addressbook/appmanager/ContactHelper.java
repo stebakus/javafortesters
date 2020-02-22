@@ -56,7 +56,7 @@ public class ContactHelper extends HelperBase {
     fillContactForm(contactsData, creation);
     submitContactCreation();
     // если я возращаюсь на Home Page через NavigationHelper, то выскакивает ошибка, хотя контакт создается как положено и по сути тест выполняется
-    // app.getNavigationHelper().returnToHomePage();
+    //app.getNavigationHelper().returnToHomePage();
     returnToHomePage();
     // чтобы тест проходил успешно, пришлось создать метод returnToHomePage() именно здесь в ContactHelper, а не использовать его через NavigationHelper
   }
