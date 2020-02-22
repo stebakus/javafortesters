@@ -51,6 +51,10 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
+
+  public boolean isThereContact() {
+    return isElementPresent(By.xpath("//img[@alt='Edit']"));
+  }
 }
 
 
