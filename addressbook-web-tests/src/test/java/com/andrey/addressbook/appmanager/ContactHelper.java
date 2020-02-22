@@ -52,9 +52,23 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
+  public void createContact(ContactsData contactsData, boolean creation) {
+    fillContactForm(contactsData, creation);
+    submitContactCreation();
+    // если я возращаюсь на Home Page через NavigationHelper, то выскакивает ошибка, хотя контакт создается как положено и по сути тест выполняется
+    // app.getNavigationHelper().returnToHomePage();
+    returnToHomePage();
+    // чтобы тест проходил успешно, пришлось создать метод returnToHomePage() именно здесь в ContactHelper, а не использовать его через NavigationHelper
+  }
+
+  private void returnToHomePage() {
+    click(By.linkText("home"));
+  }
+
   public boolean isThereContact() {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
   }
+
 }
 
 
