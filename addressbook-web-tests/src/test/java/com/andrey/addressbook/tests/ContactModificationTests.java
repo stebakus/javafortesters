@@ -7,6 +7,7 @@ public class ContactModificationTests extends TestBase {
 
   @Test
   public void contactModification(){
+    app.getNavigationHelper().returnToHomePage();
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
       app.getContactHelper().fillContactForm(new ContactsData("Andrey", null, null,

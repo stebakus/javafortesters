@@ -7,6 +7,7 @@ public class ContactDeletionTests extends TestBase {
 
   @Test
   public void testContactDeletion() throws Exception {
+    app.getNavigationHelper().returnToHomePage();
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
       app.getContactHelper().fillContactForm(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
