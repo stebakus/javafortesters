@@ -21,7 +21,6 @@ public class ContactDeletionTests extends TestBase {
     app.getContactHelper().returnToHomePage();
     int after = app.getContactHelper().getContactCount();
     Assert.assertEquals(after, before - 1);
-    // считает что на самом деле есть один контакт
   }
 
 }
