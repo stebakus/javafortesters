@@ -18,7 +18,7 @@ public class ContactDeletionTests extends TestBase {
     app.getContactHelper().selectContact();
     app.getContactHelper().clickDeleteContact();
     app.getContactHelper().confirmDeletion();
-    app.getContactHelper().returnToHomePage();
+    app.getNavigationHelper().returnToHomePageFromNavigationHelper(); // app.getContactHelper().returnToHomePage(); как вариант, чтобы избегать проверки и моментального возврашения на home.
     int after = app.getContactHelper().getContactCount();
     Assert.assertEquals(after, before - 1);
   }
