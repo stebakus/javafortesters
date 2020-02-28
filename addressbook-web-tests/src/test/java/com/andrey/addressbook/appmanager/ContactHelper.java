@@ -40,7 +40,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void closeAlert() {
+  public void confirmDeletion() {
     wd.switchTo().alert().accept();
   }
 
