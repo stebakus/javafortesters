@@ -3,7 +3,10 @@ package com.andrey.addressbook.appmanager;
 import com.andrey.addressbook.models.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class GroupHelper extends HelperBase{
@@ -34,8 +37,8 @@ public class GroupHelper extends HelperBase{
     click(By.xpath("(//input[@name='delete'])[2]"));
   }
 
-  public void selectGroup() {
-    click(By.name("selected[]"));
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initGroupModification() {
@@ -60,4 +63,18 @@ public class GroupHelper extends HelperBase{
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
+<<<<<<< HEAD
+=======
+
+  public List<GroupData> getGroupList() {
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      GroupData group = new GroupData(name , null, null);
+      groups.add(group);
+    }
+    return groups;
+  }
+>>>>>>> 9b14024b929cf5ee3d80236d3280f5787ffcb199
 }
