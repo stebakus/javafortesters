@@ -11,10 +11,8 @@ public class ContactModificationTests extends TestBase {
     app.getNavigationHelper().returnToHomePage();
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
-      app.getContactHelper().fillContactForm(new ContactsData("Andrey", null, null,
+      app.getContactHelper().createContact(new ContactsData("Andrey", null, null,
               null, null, "[none]"), true);
-      app.getContactHelper().submitContactCreation();
-      app.getNavigationHelper().returnToHomePage();
     }
     int before = app.getContactHelper().getContactCount();
     app.getContactHelper().clickModifyContact();

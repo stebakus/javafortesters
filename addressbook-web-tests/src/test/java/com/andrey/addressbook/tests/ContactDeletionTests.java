@@ -11,10 +11,8 @@ public class ContactDeletionTests extends TestBase {
     app.getNavigationHelper().returnToHomePage();
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
-      app.getContactHelper().fillContactForm(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
+      app.getContactHelper().createContact(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
               "3214192300", "andreybegishev@gmail.com", "[none]"), true);
-      app.getContactHelper().submitContactCreation();
-      app.getNavigationHelper().returnToHomePage();
     }
     int before = app.getContactHelper().getContactCount();
     app.getContactHelper().selectContact();
