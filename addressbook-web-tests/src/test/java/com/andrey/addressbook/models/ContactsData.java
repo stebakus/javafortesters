@@ -44,26 +44,24 @@ public class ContactsData {
   }
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactsData that = (ContactsData) o;
+    return Objects.equals(firstname, that.firstname) &&
+            Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstname, lastname);
+  }
+
+  @Override
   public String toString() {
     return "ContactsData{" +
             "firstname='" + firstname + '\'' +
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactsData that = (ContactsData) o;
-    return Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(phonenumber, that.phonenumber) &&
-            Objects.equals(emailaddress, that.emailaddress);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(firstname, lastname, address, phonenumber, emailaddress);
-  }
 }
