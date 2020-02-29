@@ -23,6 +23,10 @@ public class ContactDeletionTests extends TestBase {
     app.getNavigationHelper().returnToHomePageFromNavigationHelper(); // app.getContactHelper().returnToHomePage(); как вариант, чтобы избегать проверки и моментального возврашения на home.
     List<ContactsData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
+
+    before.remove(before.size() - 1);
+    Assert.assertEquals(before, after);
+
   }
 
 }

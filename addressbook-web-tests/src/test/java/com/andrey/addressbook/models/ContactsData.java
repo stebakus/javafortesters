@@ -1,5 +1,7 @@
 package com.andrey.addressbook.models;
 
+import java.util.Objects;
+
 public class ContactsData {
   private final String firstname;
   private final String lastname;
@@ -39,5 +41,29 @@ public class ContactsData {
 
   public String getGroup() {
     return group;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactsData{" +
+            "firstname='" + firstname + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactsData that = (ContactsData) o;
+    return Objects.equals(firstname, that.firstname) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(phonenumber, that.phonenumber) &&
+            Objects.equals(emailaddress, that.emailaddress);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstname, lastname, address, phonenumber, emailaddress);
   }
 }
