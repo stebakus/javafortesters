@@ -15,7 +15,7 @@ public class ContactDeletionTests extends TestBase {
               "3214192300", "andreybegishev@gmail.com", "[none]"), true);
     }
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before - 1);
     app.getContactHelper().clickDeleteContact();
     app.getContactHelper().confirmDeletion();
     app.getNavigationHelper().returnToHomePageFromNavigationHelper(); // app.getContactHelper().returnToHomePage(); как вариант, чтобы избегать проверки и моментального возврашения на home.

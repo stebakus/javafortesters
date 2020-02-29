@@ -32,8 +32,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void clickDeleteContact() {
@@ -45,8 +45,8 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("div.msgbox")); // выставление небольшой задержки перед тем как выполнить следующий шаг
   }
 
-  public void clickModifyContact() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void clickModifyContact(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {

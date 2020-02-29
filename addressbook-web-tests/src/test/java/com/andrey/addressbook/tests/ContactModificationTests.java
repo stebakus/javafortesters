@@ -15,7 +15,7 @@ public class ContactModificationTests extends TestBase {
               null, null, "[none]"), true);
     }
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().clickModifyContact();
+    app.getContactHelper().clickModifyContact(before - 1);
     app.getContactHelper().fillContactForm(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
             "3214192300", "andreybegishev@gmail.com", null), false);
     app.getContactHelper().submitContactModification();
