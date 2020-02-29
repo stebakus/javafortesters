@@ -4,8 +4,12 @@ import com.andrey.addressbook.models.ContactsData;
 import com.andrey.addressbook.models.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -69,6 +73,17 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactsData> getContactList() {
+    List<ContactsData> contacts = new ArrayList<ContactsData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//img[@alt='Edit']"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      ContactsData contact = new ContactsData(name, null, null, null, null, "[none]");
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
 
