@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
     }
     List<ContactsData> before = app.getContactHelper().getContactList();
     app.getContactHelper().clickModifyContact(before.size() - 1);
-    ContactsData contact = new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
+    ContactsData contact = new ContactsData(before.get(before.size() -1).getId(), "Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
             "3214192300", "andreybegishev@gmail.com", null);
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();

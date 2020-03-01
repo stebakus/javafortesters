@@ -82,7 +82,9 @@ public class ContactHelper extends HelperBase {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
-      ContactsData contact = new ContactsData(firstname, lastname, "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
+      String id = cells.get(0).findElement(By.tagName("input")).getAttribute("value"); // ищет элемент в первой ячейке
+      // String id = element.findElement(By.tagName("input")).getAttribute("value"); - Ищет элемент во всех ячейках строки
+      ContactsData contact = new ContactsData(id, firstname, lastname, "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
               "3214192300", "andreybegishev@gmail.com", "[none]");
       contacts.add(contact);
     }
