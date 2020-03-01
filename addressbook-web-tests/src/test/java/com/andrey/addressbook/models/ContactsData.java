@@ -12,7 +12,7 @@ public class ContactsData {
   private String group;
 
   public ContactsData(String firstname, String lastname, String address, String phonenumber, String emailaddress, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
@@ -64,11 +64,6 @@ public class ContactsData {
   }
 
   @Override
-  public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
-  }
-
-  @Override
   public String toString() {
     return "ContactsData{" +
             "id='" + id + '\'' +
@@ -82,9 +77,13 @@ public class ContactsData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactsData that = (ContactsData) o;
-    return Objects.equals(id, that.id) &&
-            Objects.equals(firstname, that.firstname) &&
+    return Objects.equals(firstname, that.firstname) &&
             Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstname, lastname);
   }
 
 }
