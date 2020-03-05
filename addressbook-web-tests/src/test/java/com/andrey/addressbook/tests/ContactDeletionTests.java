@@ -2,19 +2,24 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.ContactsData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test
-  public void testContactDeletion() throws Exception {
+  @BeforeMethod
+  public void ensurePreconditions(){
     app.getNavigationHelper().returnToHomePageFromNavigationHelper();
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
-      app.getContactHelper().createContact(new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
-              "3214192300", "andreybegishev@gmail.com", "[none]"), true);
+      app.getContactHelper().createContact(new ContactsData("Andrey", null, null,
+              null, null, "[none]"), true);
     }
+  }
+
+  @Test
+  public void testContactDeletion() throws Exception {
     List<ContactsData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().clickDeleteContact();

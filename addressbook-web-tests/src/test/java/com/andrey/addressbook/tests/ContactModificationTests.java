@@ -2,39 +2,38 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.ContactsData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test
-  public void contactModification(){
+  @BeforeMethod
+  public void ensurePreconditions(){
     app.getNavigationHelper().returnToHomePageFromNavigationHelper();
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().gotoAddNewPage();
       app.getContactHelper().createContact(new ContactsData("Andrey", null, null,
               null, null, "[none]"), true);
     }
+  }
+
+  @Test
+  public void contactModification(){
     List<ContactsData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().clickModifyContact(before.size() - 1);
-    ContactsData contact = new ContactsData(before.get(before.size() -1).getId(), "Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
+    int index = before.size() - 1;
+    ContactsData contact = new ContactsData(before.get(index).getId(), "Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
             "3214192300", "andreybegishev@gmail.com", null);
-    app.getContactHelper().fillContactForm(contact, false);
-    app.getContactHelper().submitContactModification();
-    app.getNavigationHelper().returnToHomePageFromNavigationHelper();
+    app.getContactHelper().modifyContact(index, contact);
     List<ContactsData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     before.add(contact);
     Comparator<? super ContactsData> byId = Comparator.comparingInt(ContactsData::getId);
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
-
-
-
-
   }
 }
