@@ -11,9 +11,9 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getNavigationHelper().returnToHomePageFromNavigationHelper();
+    app.goTo().returnToHomePageFromNavigationHelper();
     if (! app.getContactHelper().isThereContact()){
-      app.getNavigationHelper().gotoAddNewPage();
+      app.goTo().gotoAddNewPage();
       app.getContactHelper().createContact(new ContactsData("Andrey", null, null,
               null, null, "[none]"), true);
     }

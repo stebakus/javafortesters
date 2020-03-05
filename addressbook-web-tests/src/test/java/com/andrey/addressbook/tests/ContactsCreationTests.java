@@ -10,9 +10,9 @@ public class ContactsCreationTests extends TestBase{
 
   @Test
   public void testContactsCreation() throws Exception {
-    app.getNavigationHelper().returnToHomePageFromNavigationHelper();
+    app.goTo().returnToHomePageFromNavigationHelper();
     List<ContactsData> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().gotoAddNewPage();
+    app.goTo().gotoAddNewPage();
     ContactsData contact = new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
             "3214192300", "andreybegishev@gmail.com", "[none]");
     app.getContactHelper().createContact(contact, true);
