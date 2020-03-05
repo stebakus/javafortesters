@@ -18,7 +18,7 @@ public class NavigationHelper extends HelperBase {
       click(By.linkText("groups"));
   }
 
-  public void returnToHomePageFromNavigationHelper() {
+  public void homePage() {
       if (isElementPresent(By.id("maintable")) ) {
         return;
       }
@@ -26,7 +26,7 @@ public class NavigationHelper extends HelperBase {
 
   }
 
-  public void gotoAddNewPage() {
+  public void addContactPage() {
     click(By.linkText("add new"));
   }
 

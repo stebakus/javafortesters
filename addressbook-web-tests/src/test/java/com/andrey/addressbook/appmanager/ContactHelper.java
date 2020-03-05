@@ -1,7 +1,6 @@
 package com.andrey.addressbook.appmanager;
 
 import com.andrey.addressbook.models.ContactsData;
-import com.andrey.addressbook.models.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -57,20 +56,27 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void createContact(ContactsData contactsData, boolean creation) {
+  public void create(ContactsData contactsData, boolean creation) {
     fillContactForm(contactsData, creation);
     submitContactCreation();
-    returnToHomePage();
+    homePage();
   }
 
-  public void modifyContact(int index, ContactsData contact) {
+  public void modify(int index, ContactsData contact) {
     clickModifyContact(index);
     fillContactForm(contact, false);
     submitContactModification();
-    returnToHomePage();
+    homePage();
   }
 
-  public void returnToHomePage() {
+  public void delete(int index) {
+    selectContact(index);
+    clickDeleteContact();
+    confirmDeletion();
+    homePage();
+  }
+
+  public void homePage() {
     click(By.linkText("home"));
   }
 
@@ -82,7 +88,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactsData> getContactList() {
+  public List<ContactsData> list() {
     List<ContactsData> contacts = new ArrayList<ContactsData>();
     List<WebElement> rows = wd.findElements(By.name("entry"));  //By.xpath("//img[@alt='Edit']")
     for (WebElement element : rows) {

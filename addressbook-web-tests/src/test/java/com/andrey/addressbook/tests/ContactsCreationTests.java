@@ -10,13 +10,13 @@ public class ContactsCreationTests extends TestBase{
 
   @Test
   public void testContactsCreation() throws Exception {
-    app.goTo().returnToHomePageFromNavigationHelper();
-    List<ContactsData> before = app.getContactHelper().getContactList();
-    app.goTo().gotoAddNewPage();
+    app.goTo().homePage();
+    List<ContactsData> before = app.contact().list();
+    app.goTo().addContactPage();
     ContactsData contact = new ContactsData("Andrey", "Begishev", "272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA",
             "3214192300", "andreybegishev@gmail.com", "[none]");
-    app.getContactHelper().createContact(contact, true);
-    List<ContactsData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact, true);
+    List<ContactsData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(contact);
