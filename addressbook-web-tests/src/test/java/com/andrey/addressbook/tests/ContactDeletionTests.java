@@ -3,7 +3,6 @@ package com.andrey.addressbook.tests;
 import com.andrey.addressbook.models.ContactsData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {

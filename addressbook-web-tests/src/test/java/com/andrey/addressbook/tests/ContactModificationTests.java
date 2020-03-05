@@ -3,9 +3,7 @@ package com.andrey.addressbook.tests;
 import com.andrey.addressbook.models.ContactsData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
