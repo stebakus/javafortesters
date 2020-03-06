@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -37,6 +39,10 @@ public class ContactHelper extends HelperBase {
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void clickDeleteContact() {
@@ -76,6 +82,13 @@ public class ContactHelper extends HelperBase {
     homePage();
   }
 
+  public void delete(ContactsData contact) {
+    selectContactById(contact.getId());
+    clickDeleteContact();
+    confirmDeletion();
+    homePage();
+  }
+
   public void homePage() {
     click(By.linkText("home"));
   }
@@ -100,6 +113,20 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+  public Set<ContactsData> all() {
+    Set<ContactsData> contacts = new HashSet<ContactsData>();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement element : rows) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new ContactsData().withId(id).withFirstname(firstname).withLastname(lastname));
+    }
+    return contacts;
+  }
+
 }
 
 
