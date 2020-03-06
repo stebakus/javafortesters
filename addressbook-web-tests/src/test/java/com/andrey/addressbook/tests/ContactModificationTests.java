@@ -28,8 +28,8 @@ public class ContactModificationTests extends TestBase {
             .withAddress("272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA").withPhonenumber("3214192300")
             .withEmailaddress("andreybegishev@gmail.com").withGroup(null);
     app.contact().modify(modifiedCotact);
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
-    assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedCotact).withAdded(contact)));
   }
 }
