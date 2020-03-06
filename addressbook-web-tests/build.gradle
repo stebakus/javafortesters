@@ -12,7 +12,7 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: '3.141.59'
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api
     compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '3.141.59'
-
+    implementation("org.hamcrest:java-hamcrest:2.0.0.0")
 
 }
 
