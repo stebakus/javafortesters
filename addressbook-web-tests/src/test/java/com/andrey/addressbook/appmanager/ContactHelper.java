@@ -1,5 +1,6 @@
 package com.andrey.addressbook.appmanager;
 
+import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -114,8 +115,8 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
-  public Set<ContactsData> all() {
-    Set<ContactsData> contacts = new HashSet<ContactsData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement element : rows) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
