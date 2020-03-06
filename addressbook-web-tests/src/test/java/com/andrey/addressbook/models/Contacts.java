@@ -1,8 +1,6 @@
 package com.andrey.addressbook.models;
 
 import com.google.common.collect.ForwardingSet;
-
-import javax.swing.plaf.synth.ColorType;
 import java.util.HashSet;
 import java.util.Set;
 

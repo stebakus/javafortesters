@@ -2,12 +2,8 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.GroupData;
 import com.andrey.addressbook.models.Groups;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
