@@ -95,11 +95,8 @@ public class ContactHelper extends HelperBase {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
-      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value")); // ищет элемент в первой ячейке строки
-      // int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); - Ищет элемент во всех ячейках строки
-      ContactsData contact = new ContactsData(id, firstname, lastname, null,
-              null, null, null);
-      contacts.add(contact);
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new ContactsData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
   }
