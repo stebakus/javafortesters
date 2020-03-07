@@ -15,7 +15,7 @@ public class ContactModificationTests extends TestBase {
     app.goTo().homePage();
     if (app.contact().all().size() == 0){
       app.goTo().addContactPage();
-      app.contact().create(new ContactsData().withFirstname("Andrey").withGroup("[none]"), true);
+      app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev").withGroup("[none]"), true);
     }
   }
 
@@ -25,11 +25,11 @@ public class ContactModificationTests extends TestBase {
     ContactsData modifiedCotact = before.iterator().next();
     ContactsData contact = new ContactsData()
             .withId(modifiedCotact.getId()).withFirstname("Andrey").withLastname("Begishev")
-            .withAddress("272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA").withPhonenumber("3214192300")
+            .withAddress("272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA").withMobilePhone("3214192300")
             .withEmailaddress("andreybegishev@gmail.com").withGroup(null);
     app.contact().modify(modifiedCotact);
-    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedCotact).withAdded(contact)));
   }
 }
