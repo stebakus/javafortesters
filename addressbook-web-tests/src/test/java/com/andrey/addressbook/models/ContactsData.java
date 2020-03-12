@@ -1,5 +1,6 @@
 package com.andrey.addressbook.models;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactsData {
@@ -17,6 +18,8 @@ public class ContactsData {
   private String allPhones;
   private String allAddresses;
   private String allEmailAddresses;
+
+  private File photo;
 
   public int getId() {
     return id;
@@ -72,6 +75,15 @@ public class ContactsData {
 
   public String getAllEmailAddresses() {
     return allEmailAddresses;
+  }
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactsData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
   }
 
   public ContactsData withId(int id) {
