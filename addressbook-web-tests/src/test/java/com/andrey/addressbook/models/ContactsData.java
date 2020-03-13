@@ -10,7 +10,7 @@ import java.util.Objects;
 @XStreamAlias("contact")
 public class ContactsData {
   @XStreamOmitField
-  private int id = Integer.MAX_VALUE;
+  private transient int id = Integer.MAX_VALUE; // excludes this field in contacts.json
   @Expose
   private String firstname;
   @Expose
