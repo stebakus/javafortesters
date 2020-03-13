@@ -1,0 +1,29 @@
+<list>
+  <contact>
+    <firstname>firstname 0</firstname>
+    <lastname>lastname 0</lastname>
+    <address>address 0</address>
+    <emailAddress>emailaddress 0</emailAddress>
+    <group>[none]</group>
+    <mobilePhone>mobilephone 0</mobilePhone>
+    <photo>src\test\resources\my_photo.jpg</photo>
+  </contact>
+  <contact>
+    <firstname>firstname 1</firstname>
+    <lastname>lastname 1</lastname>
+    <address>address 1</address>
+    <emailAddress>emailaddress 1</emailAddress>
+    <group>[none]</group>
+    <mobilePhone>mobilephone 1</mobilePhone>
+    <photo>src\test\resources\my_photo.jpg</photo>
+  </contact>
+  <contact>
+    <firstname>firstname 2</firstname>
+    <lastname>lastname 2</lastname>
+    <address>address 2</address>
+    <emailAddress>emailaddress 2</emailAddress>
+    <group>[none]</group>
+    <mobilePhone>mobilephone 2</mobilePhone>
+    <photo>src\test\resources\my_photo.jpg</photo>
+  </contact>
+</list>

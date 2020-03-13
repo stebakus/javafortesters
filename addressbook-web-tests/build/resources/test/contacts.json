@@ -1,0 +1,35 @@
+[
+  {
+    "firstname": "firstname 0",
+    "lastname": "lastname 0",
+    "address": "address 0",
+    "emailAddress": "emailaddress 0",
+    "group": "[none]",
+    "mobilePhone": "mobilephone 0",
+    "photo": {
+      "path": "src\\test\\resources\\my_photo.jpg"
+    }
+  },
+  {
+    "firstname": "firstname 1",
+    "lastname": "lastname 1",
+    "address": "address 1",
+    "emailAddress": "emailaddress 1",
+    "group": "[none]",
+    "mobilePhone": "mobilephone 1",
+    "photo": {
+      "path": "src\\test\\resources\\my_photo.jpg"
+    }
+  },
+  {
+    "firstname": "firstname 2",
+    "lastname": "lastname 2",
+    "address": "address 2",
+    "emailAddress": "emailaddress 2",
+    "group": "[none]",
+    "mobilePhone": "mobilephone 2",
+    "photo": {
+      "path": "src\\test\\resources\\my_photo.jpg"
+    }
+  }
+]
