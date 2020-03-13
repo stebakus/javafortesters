@@ -4,6 +4,8 @@ import com.andrey.addressbook.models.ContactsData;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 
 import java.io.File;
@@ -58,8 +60,13 @@ public class ContactsDataGenerator {
     writer.close();
   }
 
-  private void saveAsJson(List<ContactsData> contacts, File file) {
-
+  private void saveAsJson(List<ContactsData> contacts, File file) throws IOException {
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    // Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create(); сворачивает путь файла
+    String json = gson.toJson(contacts);
+    Writer writer = new FileWriter(file);
+    writer.write(json);
+    writer.close();
   }
 
   private void saveAsCsv(List<ContactsData> contacts, File file) throws IOException {
