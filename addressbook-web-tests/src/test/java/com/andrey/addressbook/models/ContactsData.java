@@ -3,35 +3,76 @@ package com.andrey.addressbook.models;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactsData {
+
   @XStreamOmitField
-  private transient int id = Integer.MAX_VALUE; // excludes this field in contacts.json
+  @Id
+  @Column(name = "id")
+  private int id = Integer.MAX_VALUE; //private transient int id = Integer.MAX_VALUE; to exclude from json.
+
   @Expose
+  @Column(name = "firstname")
   private String firstname;
+
   @Expose
+  @Column(name = "lastname")
   private String lastname;
+
   @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String emailAddress;
+
+  @Transient
   private String emailAddress2;
+
+  @Transient
   private String emailAddress3;
+
   @Expose
+  @Transient
   private String group;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+
+  @Transient
   private String allPhones;
+
+  @Transient
   private String allAddresses;
+
+  @Transient
   private String allEmailAddresses;
+
   @Expose
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public int getId() {
     return id;
@@ -90,11 +131,11 @@ public class ContactsData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactsData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 

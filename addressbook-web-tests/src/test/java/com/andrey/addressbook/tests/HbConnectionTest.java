@@ -1,5 +1,6 @@
 package com.andrey.addressbook.tests;
 
+import com.andrey.addressbook.models.ContactsData;
 import com.andrey.addressbook.models.GroupData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,9 +38,9 @@ public class HbConnectionTest {
   public void testHbConnection () {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<GroupData> result = session.createQuery("from GroupData").list();
-    for (GroupData group : result) {
-      System.out.println(group);
+    List<ContactsData> result = session.createQuery("from ContactsData where deprecated = '0000-00-00'").list();
+    for (ContactsData contact : result) {
+      System.out.println(contact);
     }
     session.getTransaction().commit();
     session.close();
