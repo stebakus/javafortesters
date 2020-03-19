@@ -70,9 +70,8 @@ public class ContactsData {
   private String allEmailAddresses;
 
   @Expose
-  @Column(name = "photo")
-  @Type(type = "text")
-  private String photo;
+  @Transient
+  private File photo;
 
   public int getId() {
     return id;
@@ -131,11 +130,11 @@ public class ContactsData {
   }
 
   public File getPhoto() {
-    return new File(photo);
+    return photo;
   }
 
   public ContactsData withPhoto(File photo) {
-    this.photo = photo.getPath();
+    this.photo = photo;
     return this;
   }
 
