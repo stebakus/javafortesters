@@ -2,9 +2,12 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.GroupData;
+import com.andrey.addressbook.models.Groups;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -49,7 +52,29 @@ public class ContactsCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactsFromJson")
+  @BeforeMethod
+  public void ensurePredonditions () {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
+  }
+  @Test
+  public void testContactsCreation() {
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/my_photo.jpg");
+    ContactsData newContact = new  ContactsData().withFirstname("Andrey").withLastname("Begishev").withPhoto(photo)
+            .inGroup(groups.iterator().next());
+    app.goTo().homePage();
+    Contacts before = app.db().contacts();
+    app.goTo().addContactPage();
+    app.contact().fillContactForm(newContact, true);
+    app.contact().submitContactCreation();
+    app.contact().homePage();
+
+  }
+
+  /*@Test(dataProvider = "validContactsFromJson")
   public void testContactsCreation(ContactsData contact) {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
@@ -61,7 +86,8 @@ public class ContactsCreationTests extends TestBase {
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     verifyContactListUI();
-
-
   }
+
+   */
+
 }

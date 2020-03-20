@@ -2,6 +2,7 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,8 +17,9 @@ public class ContactModificationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
     if (app.db().contacts().size() == 0){
+      Groups groups = app.db().groups();
       app.goTo().addContactPage();
-      app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev").withGroup("[none]"), true);
+      app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev").inGroup(groups.iterator().next()), true);
     }
   }
 
@@ -29,7 +31,7 @@ public class ContactModificationTests extends TestBase {
     ContactsData contact = new ContactsData()
             .withId(modifiedContact.getId()).withFirstname("Andrey").withLastname("Begishev")
             .withAddress("272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA").withMobilePhone("3214192300")
-            .withEmailaddress("andreybegishev@gmail.com").withGroup("[none]").withPhoto(photo);
+            .withEmailaddress("andreybegishev@gmail.com").withPhoto(photo);
     app.goTo().homePage();
     app.contact().modify(contact);
     Contacts after = app.db().contacts();

@@ -2,6 +2,7 @@ package com.andrey.addressbook.appmanager;
 
 import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,9 +27,11 @@ public class ContactHelper extends HelperBase {
     attach(By.name("photo"), contactsData.getPhoto());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsData.getGroup());
-
-    } else{
+      if (contactsData.getGroups().size() > 0) {
+        Assert.assertTrue(contactsData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactsData.getGroups().iterator().next().getName());
+      }
+      } else{
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
@@ -63,8 +66,15 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("group")).click();
   }
 
-  public void selectGroup() {
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("test2");
+  public void selectGroup(ContactsData contactData, boolean selection) {
+    if (selection) {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+    }
+
+
   }
 
   public void addToGroup() {
@@ -99,7 +109,7 @@ public class ContactHelper extends HelperBase {
   public void addContactToGroup(ContactsData contact) {
     selectContactById(contact.getId());
     clickOnGroup();
-    selectGroup();
+    selectGroup(contact, true);
     addToGroup();
     homePage();
   }

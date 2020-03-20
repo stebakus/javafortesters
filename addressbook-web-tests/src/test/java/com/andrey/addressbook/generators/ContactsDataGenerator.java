@@ -1,6 +1,7 @@
 package com.andrey.addressbook.generators;
 
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.Groups;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.andrey.addressbook.tests.TestBase.app;
 
 public class ContactsDataGenerator {
 
@@ -73,8 +76,9 @@ public class ContactsDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     try (Writer writer = new FileWriter(file)) {
       for (ContactsData contact : contacts ) {
+        Groups groups = app.db().groups();
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname()
-                , contact.getAddress(), contact.getMobilePhone(), contact.getEmailAddress(), contact.getGroup(), contact.getPhoto()));
+                , contact.getAddress(), contact.getMobilePhone(), contact.getEmailAddress(), contact.getPhoto()));
       }
     }
   }
@@ -85,7 +89,7 @@ public class ContactsDataGenerator {
       contacts.add(new ContactsData().withFirstname(String.format("firstname %s", i))
               .withLastname(String.format("lastname %s", i)).withAddress(String.format("address %s", i))
               .withMobilePhone(String.format("mobilephone %s", i)).withEmailaddress(String.format("emailaddress %s", i))
-              .withGroup("[none]").withPhoto(new File("src/test/resources/my_photo.jpg")));
+              .withPhoto(new File("src/test/resources/my_photo.jpg")));
     }
     return contacts;
   }

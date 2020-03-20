@@ -2,6 +2,7 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,7 +16,7 @@ public class AddContactToGroupTests extends TestBase{
   public void ensurePreconditions(){
     if (app.db().contacts().size() == 0){
       app.goTo().addContactPage();
-      app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev").withGroup("[none]"), true);
+      app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev"), true);
     }
   }
 
