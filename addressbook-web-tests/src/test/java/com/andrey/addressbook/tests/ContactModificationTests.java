@@ -27,7 +27,7 @@ public class ContactModificationTests extends TestBase {
             .withAddress("272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA").withMobilePhone("3214192300")
             .withEmailaddress("andreybegishev@gmail.com").withGroup("[none]");
     app.goTo().homePage();
-    app.contact().modify(modifiedContact);
+    app.contact().modify(contact);
     Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
