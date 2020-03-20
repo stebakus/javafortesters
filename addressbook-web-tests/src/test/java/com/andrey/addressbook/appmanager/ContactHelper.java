@@ -57,7 +57,19 @@ public class ContactHelper extends HelperBase {
   public void clickModifyContactById(int id) {
       wd.findElement((By.cssSelector("a[href*='edit.php?id=" + id + "']"))).click();
 
-    }
+  }
+
+  public void clickOnGroup() {
+    wd.findElement(By.name("group")).click();
+  }
+
+  public void selectGroup() {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("test2");
+  }
+
+  public void addToGroup() {
+    wd.findElement(By.name("add")).click();
+  }
 
   public void submitContactModification() {
     click(By.xpath("(//input[@name='update'])[2]"));
@@ -82,6 +94,16 @@ public class ContactHelper extends HelperBase {
     confirmDeletion();
     homePage();
   }
+
+
+  public void addContactToGroup(ContactsData contact) {
+    selectContactById(contact.getId());
+    clickOnGroup();
+    selectGroup();
+    addToGroup();
+    homePage();
+  }
+
 
   public void homePage() {
     click(By.linkText("home"));
@@ -128,6 +150,7 @@ public class ContactHelper extends HelperBase {
     return new ContactsData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address).withEmailaddress(email).withEmailAddress2(email2).withEmailAddress3(email3);
   }
+
 }
 
 
