@@ -2,13 +2,17 @@ package com.andrey.addressbook.appmanager;
 
 import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.GroupData;
 import com.andrey.addressbook.models.Groups;
+import com.google.common.collect.Sets;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -62,19 +66,46 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void clickOnGroup() {
-    wd.findElement(By.name("group")).click();
+  public void clickOnGroupDropdown() {
+    wd.findElement(By.name("to_group")).click();
+  }
+
+  public void selectGroupFromFilter() {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("test1");
+  }
+
+  public void selectGroupFromFilterByGroupName(String groupName) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
+  }
+
+  public void selectGroupFromFilterByGroupId(int groupId) {
+    new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(groupId));
   }
 
   public void selectGroup(ContactsData contactData, boolean selection) {
+
+    int contactGroupSize = contactData.getGroups().size();
+    int totalDBGroupSize = app.db().groups().size();
     if (selection) {
-      if (contactData.getGroups().size() > 0) {
-        Assert.assertTrue(contactData.getGroups().size() == 1);
-        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
-      }
+        if (contactGroupSize == 0 || contactGroupSize == totalDBGroupSize) {
+            Random random = new Random();
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("test" + random.nextInt(100)));
+            app.goTo().homePage();
+            selectContactById(contactData.getId());
+
+            Groups totalGroups = app.db().groups();
+            Groups totalContactGroups =  contactData.getGroups();
+            Set<GroupData> contactNotInGroups = Sets.difference(totalGroups, totalContactGroups);
+            new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(contactNotInGroups.iterator().next().getId()));
+          } else {
+            Groups totalGroups = app.db().groups();
+            Groups totalContactGroups =  contactData.getGroups();
+            Set<GroupData> contactNotInGroups = Sets.difference(totalGroups, totalContactGroups);
+            new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(contactNotInGroups.iterator().next().getId()));
+        }
+
     }
-
-
   }
 
   public void addToGroup() {
@@ -100,15 +131,30 @@ public class ContactHelper extends HelperBase {
 
   public void delete(ContactsData contact) {
     selectContactById(contact.getId());
-    clickDeleteContact();
-    confirmDeletion();
+    clickRemoveContactFromGroup();
+    homePage();
+  }
+
+  public void removeFromGroup(ContactsData contact) {
+    selectContactById(contact.getId());
+    clickRemoveContactFromGroup();
+    homePage();
+  }
+
+  public void clickRemoveContactFromGroup() {
+    wd.findElement(By.name("remove")).click();
+  }
+
+  public void removeContactFromGroup(ContactsData contact) {
+    selectContactById(contact.getId());
+    clickRemoveContactFromGroup();
     homePage();
   }
 
 
   public void addContactToGroup(ContactsData contact) {
     selectContactById(contact.getId());
-    clickOnGroup();
+    clickOnGroupDropdown();
     selectGroup(contact, true);
     addToGroup();
     homePage();

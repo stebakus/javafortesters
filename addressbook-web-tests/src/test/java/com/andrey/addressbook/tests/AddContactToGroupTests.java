@@ -1,14 +1,10 @@
 package com.andrey.addressbook.tests;
 
-import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
-import com.andrey.addressbook.models.Groups;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
+import java.util.Iterator;
 
 public class AddContactToGroupTests extends TestBase{
 
@@ -23,10 +19,24 @@ public class AddContactToGroupTests extends TestBase{
   @Test
   public void addContactToGroup(){
     app.goTo().homePage();
-    Contacts before = app.db().contacts();
-    ContactsData contact = app.contact().all().iterator().next();
-    app.contact().addContactToGroup(contact);
-    Contacts after = app.db().contacts();
+    ContactsData contactsData = app.db().contacts().iterator().next();
+    app.contact().addContactToGroup(contactsData);
+    ContactsData after = null;
+
+    Iterator<ContactsData> allContacts = app.db().contacts().iterator();
+
+    while (allContacts.hasNext()) {
+      after = allContacts.next();
+      if (after.getId() == contactsData.getId()) {
+           break;
+      }
+    }
+
+    Assert.assertEquals(contactsData.getGroups().size()+1, after.getGroups().size());
+
+    //assertThat(groupSize, equalTo(contact.getGroups()));
+    //assertThat(after, equalTo(contact.getGroups()));
+
 
 
 
