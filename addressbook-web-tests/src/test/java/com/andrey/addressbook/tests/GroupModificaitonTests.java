@@ -4,30 +4,29 @@ import com.andrey.addressbook.models.GroupData;
 import com.andrey.addressbook.models.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class GroupModificaitonTests extends TestBase {
 
   @BeforeMethod
   public void ensurePredonditions () {
-    app.goTo().groupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().grpups().size() == 0) {
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
   }
 
   @Test
   public void testGroupModification() {
-    Groups before = app.group().all();
+    Groups before = app.db().grpups();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
+    app.goTo().groupPage();
     app.group().modify(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.group().all();
+    Groups after = app.db().grpups();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
