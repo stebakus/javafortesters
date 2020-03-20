@@ -1,5 +1,6 @@
 package com.andrey.addressbook.appmanager;
 
+import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
 import com.andrey.addressbook.models.GroupData;
 import com.andrey.addressbook.models.Groups;
@@ -23,12 +24,21 @@ public class DbHelper {
     sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
   }
 
-  public Groups grpups() {
+  public Groups groups() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GroupData> result = session.createQuery("from GroupData").list();
     session.getTransaction().commit();
     session.close();
     return new Groups(result);
+  }
+
+  public Contacts contacts() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactsData> result = session.createQuery("from ContactsData where deprecated = '0000-00-00'").list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
   }
 }

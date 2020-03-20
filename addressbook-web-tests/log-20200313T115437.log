@@ -1,8 +1,0 @@
-7624 [main] INFO  c.andrey.addressbook.tests.TestBase - Start test testBadGroupCreation with parameters []
-10741 [main] INFO  c.andrey.addressbook.tests.TestBase - Stop test testBadGroupCreation
-10799 [main] INFO  c.andrey.addressbook.tests.TestBase - Start test testGroupCreation with parameters [GroupData{id='2147483647', name='test 0'}]
-12883 [main] INFO  c.andrey.addressbook.tests.TestBase - Stop test testGroupCreation
-12883 [main] INFO  c.andrey.addressbook.tests.TestBase - Start test testGroupCreation with parameters [GroupData{id='2147483647', name='test 1'}]
-15046 [main] INFO  c.andrey.addressbook.tests.TestBase - Stop test testGroupCreation
-15049 [main] INFO  c.andrey.addressbook.tests.TestBase - Start test testGroupCreation with parameters [GroupData{id='2147483647', name='test 2'}]
-17607 [main] INFO  c.andrey.addressbook.tests.TestBase - Stop test testGroupCreation

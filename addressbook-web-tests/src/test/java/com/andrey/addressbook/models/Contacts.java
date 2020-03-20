@@ -1,8 +1,8 @@
 package com.andrey.addressbook.models;
 
 import com.google.common.collect.ForwardingSet;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 public class Contacts extends ForwardingSet<ContactsData> {
 
@@ -14,6 +14,10 @@ public class Contacts extends ForwardingSet<ContactsData> {
 
   public Contacts() {
     this.delegate = new HashSet<ContactsData>();
+  }
+
+  public Contacts(Collection<ContactsData> contacts) {
+    this.delegate = new HashSet<ContactsData>(contacts);
   }
 
   @Override
