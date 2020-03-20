@@ -224,12 +224,14 @@ public class ContactsData {
     ContactsData that = (ContactsData) o;
     return id == that.id &&
             Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname);
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(emailAddress, that.emailAddress) &&
+            Objects.equals(mobilePhone, that.mobilePhone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, lastname, address, emailAddress, mobilePhone);
   }
-
 }
