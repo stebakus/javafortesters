@@ -4,6 +4,9 @@ import com.andrey.addressbook.models.Contacts;
 import com.andrey.addressbook.models.ContactsData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.*;
@@ -22,10 +25,11 @@ public class ContactModificationTests extends TestBase {
   public void contactModification(){
     Contacts before = app.db().contacts();
     ContactsData modifiedContact = before.iterator().next();
+    File photo = new File ("src/test/resources/my_photo.jpg");
     ContactsData contact = new ContactsData()
             .withId(modifiedContact.getId()).withFirstname("Andrey").withLastname("Begishev")
             .withAddress("272 Canaveral Beach Blvd, Cape Canaveral, FL, 32920, USA").withMobilePhone("3214192300")
-            .withEmailaddress("andreybegishev@gmail.com").withGroup("[none]");
+            .withEmailaddress("andreybegishev@gmail.com").withGroup("[none]").withPhoto(photo);
     app.goTo().homePage();
     app.contact().modify(contact);
     Contacts after = app.db().contacts();
