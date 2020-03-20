@@ -1,6 +1,12 @@
 package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.appmanager.ApplicationManager;
+import com.andrey.addressbook.models.Contacts;
+import com.andrey.addressbook.models.ContactsData;
+import com.andrey.addressbook.models.GroupData;
+import com.andrey.addressbook.models.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +18,10 @@ import org.testng.annotations.BeforeSuite;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
 
@@ -40,4 +50,40 @@ public class TestBase {
     logger.info("Stop test " + m.getName());
   }
 
+
+  public void verifyGroupListUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Groups dbGroups = app.db().groups();
+      Groups uiGroups = app.group().all();
+      assertThat(uiGroups, equalTo(dbGroups.stream()
+              .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+              .collect(Collectors.toSet())));
+    }
+  }
+  public void verifyContactListUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts.stream()
+              .map((c) -> new ContactsData().withId(c.getId()).withFirstname(c.getFirstname()))
+              .collect(Collectors.toSet())));
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
