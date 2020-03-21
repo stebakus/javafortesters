@@ -4,20 +4,21 @@ import com.andrey.addressbook.models.ContactsData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.util.Iterator;
 
-public class AddContactToGroupTests extends TestBase{
+public class AddContactToGroupTests extends TestBase {
 
   @BeforeMethod
-  public void ensurePreconditions(){
-    if (app.db().contacts().size() == 0){
+  public void ensurePreconditions() {
+    if (app.db().contacts().size() == 0) {
       app.goTo().addContactPage();
       app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev"), true);
     }
   }
 
   @Test
-  public void addContactToGroup(){
+  public void addContactToGroup() {
     app.goTo().homePage();
     ContactsData contactsData = app.db().contacts().iterator().next();
     app.contact().addContactToGroup(contactsData);
@@ -28,16 +29,14 @@ public class AddContactToGroupTests extends TestBase{
     while (allContacts.hasNext()) {
       after = allContacts.next();
       if (after.getId() == contactsData.getId()) {
-           break;
+        break;
       }
     }
 
-    Assert.assertEquals(contactsData.getGroups().size()+1, after.getGroups().size());
+    Assert.assertEquals(contactsData.getGroups().size() + 1, after.getGroups().size());
 
     //assertThat(groupSize, equalTo(contact.getGroups()));
     //assertThat(after, equalTo(contact.getGroups()));
-
-
 
 
   }
