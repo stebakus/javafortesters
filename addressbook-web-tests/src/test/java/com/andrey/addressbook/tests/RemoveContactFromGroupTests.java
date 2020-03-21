@@ -15,6 +15,9 @@ public class RemoveContactFromGroupTests extends TestBase {
       app.goTo().addContactPage();
       app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev"), true);
     }
+    ContactsData contactsData = app.db().contacts().iterator().next();
+    app.contact().addContactToGroup(contactsData);
+
   }
 
   @Test
