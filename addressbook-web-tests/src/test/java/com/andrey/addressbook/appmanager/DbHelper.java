@@ -1,9 +1,6 @@
 package com.andrey.addressbook.appmanager;
 
-import com.andrey.addressbook.models.Contacts;
-import com.andrey.addressbook.models.ContactsData;
-import com.andrey.addressbook.models.GroupData;
-import com.andrey.addressbook.models.Groups;
+import com.andrey.addressbook.models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -40,5 +37,14 @@ public class DbHelper {
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public ContactsInGroups contactsInGroups() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactsInGroupsData> result = session.createQuery("from ContactsInGroupsData").list();
+    session.getTransaction().commit();
+    session.close();
+    return new ContactsInGroups((ContactsInGroups) result);
   }
 }

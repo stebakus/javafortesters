@@ -35,8 +35,11 @@
         <property name="hbm2ddl.auto">validate</property>
 
         <!-- Names the annotated entity class -->
+        <!-- mapping class="com.andrey.addressbook.models.ContactsInGroupsData"/> -->
         <mapping class="com.andrey.addressbook.models.GroupData"/>
         <mapping class="com.andrey.addressbook.models.ContactsData"/>
+
+
 
     </session-factory>
 
