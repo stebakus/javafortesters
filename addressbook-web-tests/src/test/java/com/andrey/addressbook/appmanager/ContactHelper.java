@@ -5,6 +5,11 @@ import com.andrey.addressbook.models.ContactsData;
 import com.andrey.addressbook.models.GroupData;
 import com.andrey.addressbook.models.Groups;
 import com.google.common.collect.Sets;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -207,6 +212,23 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address).withEmailaddress(email).withEmailAddress2(email2).withEmailAddress3(email3);
   }
 
+  public List<ContactsData> getContactsList() {
+    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    List<ContactsData> result = session.createQuery("from ContactsData where deprecated = '0000-00-00'").list();
+    session.close();
+    return result;
+  }
+
+  public List<ContactsData> getGroupsList() {
+    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    List<ContactsData> result = session.createQuery("from GroupData").list();
+    session.close();
+    return result;
+  }
 }
 
 
