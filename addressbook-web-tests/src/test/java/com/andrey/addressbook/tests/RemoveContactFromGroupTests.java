@@ -14,8 +14,11 @@ public class RemoveContactFromGroupTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.goTo().addContactPage();
       app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev"), true);
+      ContactsData contactsData = app.db().contacts().iterator().next();
+      app.contact().addContactToGroup(contactsData);
     }
     ContactsData contactsData = app.db().contacts().iterator().next();
+    if (contactsData.getGroups().size() == 0)
     app.contact().addContactToGroup(contactsData);
 
   }
