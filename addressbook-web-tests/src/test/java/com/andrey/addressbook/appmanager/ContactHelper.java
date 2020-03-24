@@ -91,26 +91,35 @@ public class ContactHelper extends HelperBase {
 
     int contactGroupSize = contactData.getGroups().size();
     int totalDBGroupSize = app.db().groups().size();
+    int counter = 0;
     if (selection) {
-        if (contactGroupSize == 0 || contactGroupSize == totalDBGroupSize) {
-            Random random = new Random();
-            app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test" + random.nextInt(100)));
-            app.goTo().homePage();
-            selectContactById(contactData.getId());
+      if (contactGroupSize == 0 || contactGroupSize == totalDBGroupSize) {
 
-            Groups totalGroups = app.db().groups();
-            Groups totalContactGroups =  contactData.getGroups();
-            Set<GroupData> contactNotInGroups = Sets.difference(totalGroups, totalContactGroups);
-            new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(contactNotInGroups.iterator().next().getId()));
-          } else {
-            Groups totalGroups = app.db().groups();
-            Groups totalContactGroups =  contactData.getGroups();
-            Set<GroupData> contactNotInGroups = Sets.difference(totalGroups, totalContactGroups);
-            new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(contactNotInGroups.iterator().next().getId()));
-        }
-
+          List<ContactsData> contactList = app.contact().getContactsList();
+          for (ContactsData contact: contactList) {
+            if (contact.getGroups().size() < totalDBGroupSize) {
+              homePage();
+              selectContactById(contact.getId());
+              new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(getGroupListWithoutContact(contact.getGroups()).iterator().next().getId()));
+              counter++;
+              break;
+            }
+          }
+          if (counter == 0) {
+            app.goTo().addContactPage();
+            app.contact().create(new ContactsData().withFirstname("Andrey1").withLastname("Begishev1"), true);
+            addContactToGroup(contactData);
+          }
+        } else {
+          Groups totalContactGroups =  contactData.getGroups();
+          new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(getGroupListWithoutContact(totalContactGroups).iterator().next().getId()));
+      }
     }
+  }
+
+  public  Set<GroupData> getGroupListWithoutContact(Groups totalContactGroups) {
+    Groups totalGroups = app.db().groups();
+    return Sets.difference(totalGroups, totalContactGroups);
   }
 
   public void addToGroup() {

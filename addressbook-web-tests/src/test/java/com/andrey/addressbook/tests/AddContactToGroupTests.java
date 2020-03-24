@@ -2,18 +2,18 @@ package com.andrey.addressbook.tests;
 
 import com.andrey.addressbook.models.ContactsData;
 import com.andrey.addressbook.models.GroupData;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import com.google.common.collect.Sets;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddContactToGroupTests extends TestBase {
 
@@ -23,17 +23,50 @@ public class AddContactToGroupTests extends TestBase {
       app.goTo().addContactPage();
       app.contact().create(new ContactsData().withFirstname("Andrey").withLastname("Begishev"), true);
     }
+    // # 1
+    if (app.db().groups().size() == 0) {
+      Random random = new Random();
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test" + random.nextInt(100)));
+    }
   }
 
   @Test
   public void addContactToGroup() {
     app.goTo().homePage();
-    List<ContactsData> beforeContact = app.contact().getContactsList();
-    List<ContactsData> beforeGroup = app.contact().getGroupsList();
-    ContactsData contactsData = app.db().contacts().iterator().next();
+    List<ContactsData> beforeContactList = app.contact().getContactsList();
+    ContactsData contactsData = null;
+
+    int counter = 0;
+
+    int totalDBGroupSize = app.db().groups().size();
+    for (ContactsData contact : beforeContactList) {
+      if (contact.getGroups().size() != totalDBGroupSize) {
+        contactsData = contact;
+        counter++;
+       // app.contact().addContactToGroup(contact);
+        break;
+      }
+    }
+
+    if (counter == 0) {
+      // создаешь нового пользователя
+      app.goTo().addContactPage();
+      app.contact().create(new ContactsData().withFirstname("Andrey1").withLastname("Begishev1"), true);
+      beforeContactList = app.contact().getContactsList();
+      for (ContactsData contact : beforeContactList) {
+        if (contact.getGroups().size() != totalDBGroupSize) {
+          contactsData = contact;
+         // app.contact().addContactToGroup(contact);
+          break;
+        }
+      }
+    }
+
+
     app.contact().addContactToGroup(contactsData);
+
     List<ContactsData> afterContact = app.contact().getContactsList();
-    List<ContactsData> afterGroup = app.contact().getGroupsList();
     ContactsData after = null;
     Iterator<ContactsData> allContacts = app.db().contacts().iterator();
 
@@ -43,21 +76,49 @@ public class AddContactToGroupTests extends TestBase {
         break;
       }
     }
-    app.goTo().homePage();
+//    app.goTo().homePage();
+
+    ContactsData bContact = null;
+    ContactsData aContact = null;
+
+    if (afterContact.size() > beforeContactList.size()) {
+      afterContact.removeAll(beforeContactList);
+       contactsData = afterContact.get(0);
+    }
+
+    for (ContactsData  contactbefore : beforeContactList) {
+      if (contactbefore.getId() == contactsData.getId()) {
+        bContact = contactbefore;
+      }
+    }
+
+    for (ContactsData contactafter : afterContact) {
+      if (contactafter.getId() == contactsData.getId()) {
+        aContact = contactafter;
+      }
+    }
+
+
+    Set<GroupData> beforeContactGroups = Sets.difference(aContact.getGroups(), bContact.getGroups());
 
     Assert.assertEquals(contactsData.getGroups().size() + 1, after.getGroups().size());
+    assertThat(aContact.getGroups(),
+            equalTo(bContact.getGroups().withAdded(beforeContactGroups.iterator().next())));
+
+    System.out.println("****************************************************************************");
+    System.out.println("BEFORE: " + bContact);
+    System.out.println(bContact.getGroups());
+    System.out.println("AFTER: " + aContact);
+    System.out.println(aContact.getGroups());
+    System.out.println("****************************************************************************");
 
 
-    /*for (ContactsData contact : before1) {
-      System.out.println(contact);
-      System.out.println(contact.getGroups());
-    }
-    for (ContactsData contact : after1) {
-      System.out.println(contact);
-      System.out.println(contact.getGroups());
-    }
 
-     */
+
+
+
+
+
 
   }
 
