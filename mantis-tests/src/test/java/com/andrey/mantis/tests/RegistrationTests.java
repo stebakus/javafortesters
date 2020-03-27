@@ -10,26 +10,26 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
+import static java.lang.String.format;
+import static org.testng.AssertJUnit.assertTrue;
+
 public class RegistrationTests extends TestBase {
-  @Test
-  public void testRegistration() throws IOException, MessagingException {
-    app.registration().start("user1", "user1@localhost.localdomain");
-  }
-}
-  /*@BeforeMethod
+
+  @BeforeMethod
   public void startMailServer() {
     app.mail().start();
   }
 
   @Test
   public void testRegistration () throws IOException, MessagingException {
-    String user = "user1";
-    String email = "user1@localhost.localdomain";
+    long now = System.currentTimeMillis();
+    String user = "user" + now;
+    String email = "user" + now + "@localhost.localdomain";
     app.registration().start(user, email);
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.registration().finish(confirmationLink, "password");
-    app.newSession().login(user);
+    app.registration().finish(confirmationLink, "test");
+    assertTrue(app.newSession().login(user));
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
@@ -44,5 +44,3 @@ public class RegistrationTests extends TestBase {
     app.mail().stop();
   }
 }
-
-   */
