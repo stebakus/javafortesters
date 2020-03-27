@@ -19,6 +19,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.3.0-alpha5")
     implementation("mysql:mysql-connector-java:8.0.19")
     implementation("org.hibernate:hibernate-core:5.4.12.Final")
+    implementation("com.joyent.http-signature:apache-http-client-signature:4.1.1")
+    implementation("com.cisco.oss.foundation:http-client-apache:1.2.2-4")
 
 }
 
