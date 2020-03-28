@@ -1,8 +1,14 @@
 package com.andrey.mantis.appmanager;
 
-import com.andrey.mantis.tests.TestBase;
+import com.andrey.mantis.models.UsersData;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 public class UpdatePasswordHelper extends HelperBase {
 
@@ -27,5 +33,14 @@ public class UpdatePasswordHelper extends HelperBase {
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
     click(By.cssSelector("span.bigger-110"));
+  }
+
+  public List<UsersData> getUsersList() {
+    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    List<UsersData> result = session.createQuery("from UsersData").list();
+    session.close();
+    return result;
   }
 }

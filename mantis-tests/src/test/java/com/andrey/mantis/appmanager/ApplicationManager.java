@@ -25,6 +25,7 @@ public class ApplicationManager {
   private UpdatePasswordHelper updatePasswordHelper;
 
 
+
   public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();

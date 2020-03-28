@@ -30,9 +30,11 @@ public class UpdateUserPasswordTests extends TestBase {
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.loginAndVerification().finish(confirmationLink, "test");
+    //app.loginAndVerification().getUsersList();
     HttpSession session = app.newSession();
     assertTrue(session.login(user));
     assertTrue(session.isLoggedInAs(user));
+    //System.out.println(app.loginAndVerification().getUsersList());
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
