@@ -1,5 +1,6 @@
 package com.andrey.mantis.appmanager;
 
+import com.andrey.mantis.tests.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import java.io.File;

@@ -1,5 +1,6 @@
 package com.andrey.mantis.appmanager;
 
+import org.hibernate.sql.Update;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,6 +22,8 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private UpdatePasswordHelper updatePasswordHelper;
+
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -87,5 +90,12 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public UpdatePasswordHelper loginAndVerification() {
+    if (updatePasswordHelper == null) {
+      updatePasswordHelper = new UpdatePasswordHelper(this);
+    }
+    return updatePasswordHelper;
   }
 }
