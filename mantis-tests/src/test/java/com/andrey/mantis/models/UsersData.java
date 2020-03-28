@@ -22,6 +22,7 @@ public class UsersData {
     return "UsersData{" +
             "id=" + id +
             ", username='" + username + '\'' +
+            ", email='" + email + '\'' +
             '}';
   }
 
@@ -31,13 +32,25 @@ public class UsersData {
     if (o == null || getClass() != o.getClass()) return false;
     UsersData usersData = (UsersData) o;
     return id == usersData.id &&
-            Objects.equals(username, usersData.username);
+            Objects.equals(username, usersData.username) &&
+            Objects.equals(email, usersData.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username);
+    return Objects.hash(id, username, email);
   }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  @Column(name = "email")
+  private String email;
 
   public UsersData getId(int id) {
     this.id = id;
@@ -48,9 +61,8 @@ public class UsersData {
     this.id = id;
   }
 
-  public UsersData getUsername(String username) {
-    this.username = username;
-    return this;
+  public String getUsername() {
+    return username;
   }
 
   public void setUsername(String username) {
