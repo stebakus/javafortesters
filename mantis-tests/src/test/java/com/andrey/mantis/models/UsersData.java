@@ -17,11 +17,15 @@ public class UsersData {
   @Column(name = "username")
   private String username;
 
+  @Column(name = "password")
+  private String password;
+
   @Override
   public String toString() {
     return "UsersData{" +
             "id=" + id +
             ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
             ", email='" + email + '\'' +
             '}';
   }
@@ -33,12 +37,21 @@ public class UsersData {
     UsersData usersData = (UsersData) o;
     return id == usersData.id &&
             Objects.equals(username, usersData.username) &&
+            Objects.equals(password, usersData.password) &&
             Objects.equals(email, usersData.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, email);
+    return Objects.hash(id, username, password, email);
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public String getEmail() {

@@ -3,6 +3,7 @@ package com.andrey.mantis.tests;
 import com.andrey.mantis.appmanager.HttpSession;
 import com.andrey.mantis.models.MailMessage;
 import com.andrey.mantis.models.UsersData;
+import com.google.common.hash.HashCode;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,13 +30,17 @@ public class UpdateUserPasswordTests extends TestBase {
     String email = contacts.get(2).getEmail();
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
+    //String password = contacts.get(2).getPassword();
+    //app.loginAndVerification().finish(confirmationLink, password);
     app.loginAndVerification().finish(confirmationLink, "test");
     HttpSession session = app.newSession();
     assertTrue(session.login(user));
     assertTrue(session.isLoggedInAs(user));
 
-    System.out.println(contacts.get(2).getUsername());
-    System.out.println(contacts.get(2).getEmail());
+    System.out.println("Username: " + contacts.get(2).getUsername());
+    System.out.println("Email: " + contacts.get(2).getEmail());
+    System.out.println("Password in Hash: " + contacts.get(2).getPassword());
+
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
