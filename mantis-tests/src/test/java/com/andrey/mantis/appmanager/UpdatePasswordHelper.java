@@ -8,7 +8,6 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.openqa.selenium.By;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class UpdatePasswordHelper extends HelperBase {
@@ -17,19 +16,15 @@ public class UpdatePasswordHelper extends HelperBase {
     super(app);
   }
 
-  public void start(String username, String password, int id) {
+  public void start(String username, String password) {
     wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
     type(By.name("username"), username);
     click(By.cssSelector("input[value='Login']"));
     type(By.name("password"), password);
     click(By.cssSelector("input[value='Login']"));
     click(By.linkText("Manage Users"));
-    //List<UsersData> usersList = app.loginAndVerification().getUsersList();
-    //Iterator<UsersData> allusers = app.loginAndVerification().getUsersList().iterator();
-    //if (users.iterator().next().getId() != 1) {
-    //click((By.cssSelector("a[href*='manage_user_edit_page.php?user_id=" + id + "']"))); // выбирает администратора
-    // }
-    click(By.linkText("user1"));
+    List<UsersData> usersList = app.loginAndVerification().getUsersListWithoutAdmin();
+    click(By.linkText((usersList.iterator().next().getUsername())));
     click(By.xpath("//input[@value='Reset Password']"));
     click(By.linkText("Proceed"));
   }
@@ -41,11 +36,22 @@ public class UpdatePasswordHelper extends HelperBase {
     click(By.cssSelector("span.bigger-110"));
   }
 
-  public List<UsersData> getUsersList() {
+  public List<UsersData> getAllUsersList() {
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
     SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     Session session = sessionFactory.openSession();
     List<UsersData> result = session.createQuery("from UsersData").list();
+    session.close();
+    return result;
+  }
+
+
+  public List<UsersData> getUsersListWithoutAdmin() {
+    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    Session session = sessionFactory.openSession();
+    //List<UsersData> result = session.createQuery("from UsersData where id!=1").list(); //exclude admin by id
+    List<UsersData> result = session.createQuery("from UsersData where username != 'administrator'").list(); //exclude admin by username
     session.close();
     return result;
   }

@@ -10,7 +10,6 @@ import ru.lanwen.verbalregex.VerbalExpression;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -24,10 +23,10 @@ public class UpdateUserPasswordTests extends TestBase {
 
   @Test
   public void testUpdateUserPassword() throws IOException, MessagingException {
-    app.loginAndVerification().start("administrator", "test", 1);
-    List<UsersData> usersList = app.loginAndVerification().getUsersList();
-    String user = usersList.get(1).getUsername(); // same as String user = "user1";
-    String email = usersList.get(1).getEmail(); // same as String email = "user1@localhost.localdomain";
+    app.loginAndVerification().start("administrator", "test");
+    List<UsersData> usersList = app.loginAndVerification().getUsersListWithoutAdmin();
+    String user = usersList.get(0).getUsername(); // same as String user = "user1";
+    String email = usersList.get(0).getEmail(); // same as String email = "user1@localhost.localdomain";
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email); // email: user1@localhost.localdomain
     app.loginAndVerification().finish(confirmationLink, "test");
