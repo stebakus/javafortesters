@@ -65,9 +65,8 @@ public class UsersData {
   @Column(name = "email")
   private String email;
 
-  public UsersData getId(int id) {
-    this.id = id;
-    return this;
+  public int getId() {
+    return id;
   }
 
   public void setId(int id) {
