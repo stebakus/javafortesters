@@ -25,21 +25,18 @@ public class UpdateUserPasswordTests extends TestBase {
   @Test
   public void testUpdateUserPassword() throws IOException, MessagingException {
     app.loginAndVerification().start("administrator", "test");
-    List<UsersData> contacts = app.loginAndVerification().getUsersList();
-    String user = contacts.get(2).getUsername();
-    String email = contacts.get(2).getEmail();
+    List<UsersData> users = app.loginAndVerification().getUsersList();
+    String user = users.get(1).getUsername();
+    String email = users.get(1).getEmail();
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    //String password = contacts.get(2).getPassword();
-    //app.loginAndVerification().finish(confirmationLink, password);
     app.loginAndVerification().finish(confirmationLink, "test");
     HttpSession session = app.newSession();
     assertTrue(session.login(user));
     assertTrue(session.isLoggedInAs(user));
 
-    System.out.println("Username: " + contacts.get(2).getUsername());
-    System.out.println("Email: " + contacts.get(2).getEmail());
-    System.out.println("Password in Hash: " + contacts.get(2).getPassword());
+    System.out.println("Username: " + users.get(1).getUsername());
+    System.out.println("Email: " + users.get(1).getEmail());
 
   }
 
