@@ -25,10 +25,10 @@ public class UpdateUserPasswordTests extends TestBase {
   public void testUpdateUserPassword() throws IOException, MessagingException {
     app.loginAndVerification().start("administrator", "test");
     List<UsersData> usersList = app.loginAndVerification().getUsersListWithoutAdmin();
-    String user = usersList.get(0).getUsername(); // same as String user = "user1";
-    String email = usersList.get(0).getEmail(); // same as String email = "user1@localhost.localdomain";
+    String user = usersList.get(0).getUsername(); // first username from list excluding admin
+    String email = usersList.get(0).getEmail(); // first email from list excluding admin
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
-    String confirmationLink = findConfirmationLink(mailMessages, email); // email: user1@localhost.localdomain
+    String confirmationLink = findConfirmationLink(mailMessages, email); // email from Row 29
     app.loginAndVerification().finish(confirmationLink, "test");
     HttpSession session = app.newSession();
     assertTrue(session.login(user));
