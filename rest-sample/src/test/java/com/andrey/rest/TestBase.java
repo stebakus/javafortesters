@@ -45,7 +45,8 @@ public class TestBase {
 
   boolean isIssueOpen(int issueId) throws IOException {
     Issue issue = getIssues().iterator().next();
-    if (issue.getStatus().equals("Closed") || issue.getStatus().equals("Resolved") || issue.getStatus().equals("Deleted")) {
+    //Issue issue = getIssues().stream().filter((i) -> i.getId() == issueId).iterator().next();
+    if (issue.getStatus().equals("Open")) {
       return false;
     } else {
       return true;

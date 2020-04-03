@@ -10,7 +10,7 @@ public class RestTests extends TestBase {
 
   @Test
   public void testCreateIssue() throws IOException {
-    //skipIfNotFixed(2); // Bug status - Open
+    skipIfNotFixed(1); // Bug status - Open
     //skipIfNotFixed(608); // Bug status - Closed
     //skipIfNotFixed(768); // Bug status - Resolved
     //skipIfNotFixed(1); // Bug status - Deleted
@@ -19,7 +19,8 @@ public class RestTests extends TestBase {
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);
     Set<Issue> newIssues = getIssues();
-    oldIssues.add(newIssue.withId(issueId)); //20 bugs per page are shown
+    assertEquals(newIssues.size(), oldIssues.size() + 1);
+    oldIssues.add(newIssue.withId(issueId).withStatus("Open")); //20 bugs per page are shown
     assertEquals(newIssues, oldIssues);
   }
 
