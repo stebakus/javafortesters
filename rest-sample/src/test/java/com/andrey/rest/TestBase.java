@@ -29,6 +29,14 @@ public class TestBase {
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
   }
 
+  Set<Issue> getIssueById(int issueId) throws IOException {
+    String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/" + issueId + ".json"))
+            .returnContent().asString();
+    JsonElement parsed = new JsonParser().parse(json);
+    JsonElement issues = parsed.getAsJsonObject().get("issues");
+    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
+  }
+
   private Executor getExecutor() {
     return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
   }
@@ -44,12 +52,11 @@ public class TestBase {
 
 
   boolean isIssueOpen(int issueId) throws IOException {
-    Issue issue = getIssues().iterator().next();
-    //Issue issue = getIssues().stream().filter((i) -> i.getId() == issueId).iterator().next();
+    Issue issue = getIssueById(issueId).iterator().next();
     if (issue.getStatus().equals("Open")) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 
