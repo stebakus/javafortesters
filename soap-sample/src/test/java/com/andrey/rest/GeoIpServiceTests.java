@@ -1,4 +1,4 @@
-package com.andrey.soap;
+package com.andrey.rest;
 
 import net.webservicex.GeoIP;
 import net.webservicex.GeoIPService;
