@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.andrey.sandbox.EquationTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-04-09T22:14:11" hostname="LAPTOP-KUV071DA" time="0.016">
+  <properties/>
+  <testcase name="test0" classname="com.andrey.sandbox.EquationTests" time="0.008"/>
+  <testcase name="test1" classname="com.andrey.sandbox.EquationTests" time="0.0"/>
+  <testcase name="test2" classname="com.andrey.sandbox.EquationTests" time="0.0"/>
+  <testcase name="testConstant" classname="com.andrey.sandbox.EquationTests" time="0.0"/>
+  <testcase name="testLinear" classname="com.andrey.sandbox.EquationTests" time="0.0"/>
+  <testcase name="testZero" classname="com.andrey.sandbox.EquationTests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
