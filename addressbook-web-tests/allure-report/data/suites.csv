@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Apr 14 17:45:26 EDT 2020","Tue Apr 14 17:45:28 EDT 2020","1708","","Suite1","","Suite1","testGroupModification","testGroupModification",""
+"failed","Tue Apr 14 18:30:17 EDT 2020","Tue Apr 14 18:30:20 EDT 2020","3548","","Suite1","","Suite1","testGroupModification","testGroupModification",""

@@ -1,11 +1,11 @@
 [ {
-  "uid" : "8dc0eccc07a4c094",
+  "uid" : "33abd302876ea0e3",
   "name" : "testGroupModification",
   "time" : {
-    "start" : 1586900726380,
-    "stop" : 1586900728088,
-    "duration" : 1708
+    "start" : 1586903417178,
+    "stop" : 1586903420726,
+    "duration" : 3548
   },
-  "status" : "passed",
+  "status" : "failed",
   "severity" : "normal"
 } ]

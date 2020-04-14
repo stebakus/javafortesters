@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.andrey.addressbook.tests.GroupModificaitonTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-04-14T22:30:17" hostname="LAPTOP-KUV071DA" time="2.907">
-  <properties/>
-  <testcase name="testGroupModification" classname="com.andrey.addressbook.tests.GroupModificaitonTests" time="2.907">
-    <failure message="java.lang.AssertionError: &#10;Expected: &lt;3&gt;&#10;     but: was &lt;2&gt;" type="java.lang.AssertionError">java.lang.AssertionError: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1586903415692" stop="1586903420738">
+    <name>Suite1</name>
+    <test-cases>
+        <test-case start="1586903417178" stop="1586903420726" status="failed">
+            <name>testGroupModification</name>
+            <failure>
+                <message>AssertionError: 
+Expected: &lt;3&gt;
+     but: was &lt;2&gt;</message>
+                <stack-trace>java.lang.AssertionError: 
 Expected: &lt;3&gt;
      but: was &lt;2&gt;
 	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:18)
@@ -61,12 +67,14 @@ Expected: &lt;3&gt;
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
 	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <system-out><![CDATA[18:30:15.751 [Test worker] INFO  c.andrey.addressbook.tests.TestBase - Start test testGroupModification with parameters []
-Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
-Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
-18:30:20.731 [Test worker] INFO  c.andrey.addressbook.tests.TestBase - Stop test testGroupModification
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
+</stack-trace>
+            </failure>
+            <steps/>
+            <attachments>
+                <attachment title="Page screenshot" source="e676ebcfa029b6b1a1339a3cd1cd2fa97ffb4996c137fbf4e5a7f67be7422009-attachment.png" type="image/png" size="19736"/>
+            </attachments>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels/>
+</ns2:test-suite>

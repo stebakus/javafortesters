@@ -4,10 +4,10 @@
     "uid" : "1b55da8b4eccbbb6df84e16f476662eb",
     "name" : "Suite1",
     "statistic" : {
-      "failed" : 0,
+      "failed" : 1,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 1,
+      "passed" : 0,
       "unknown" : 0,
       "total" : 1
     }
