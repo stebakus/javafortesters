@@ -1,0 +1,22 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "Suite1",
+    "children" : [ {
+      "name" : "testGroupModification",
+      "uid" : "8dc0eccc07a4c094",
+      "parentUid" : "82d5bbc178135984a9be49080f05c781",
+      "status" : "passed",
+      "time" : {
+        "start" : 1586900726380,
+        "stop" : 1586900728088,
+        "duration" : 1708
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "82d5bbc178135984a9be49080f05c781"
+  } ]
+}

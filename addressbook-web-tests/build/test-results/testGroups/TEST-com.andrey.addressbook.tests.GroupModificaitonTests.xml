@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.andrey.addressbook.tests.GroupModificaitonTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-11T15:01:22" hostname="LAPTOP-KUV071DA" time="2.096">
+<testsuite name="com.andrey.addressbook.tests.GroupModificaitonTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-14T22:26:06" hostname="LAPTOP-KUV071DA" time="1.777">
   <properties/>
-  <testcase name="testGroupModification" classname="com.andrey.addressbook.tests.GroupModificaitonTests" time="2.096"/>
-  <system-out><![CDATA[11:01:21.738 [Test worker] INFO  c.andrey.addressbook.tests.TestBase - Start test testGroupModification with parameters []
+  <testcase name="testGroupModification" classname="com.andrey.addressbook.tests.GroupModificaitonTests" time="1.777"/>
+  <system-out><![CDATA[18:26:05.950 [Test worker] INFO  c.andrey.addressbook.tests.TestBase - Start test testGroupModification with parameters []
 Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
 Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
 Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
-11:01:24.647 [Test worker] INFO  c.andrey.addressbook.tests.TestBase - Stop test testGroupModification
+18:26:08.678 [Test worker] INFO  c.andrey.addressbook.tests.TestBase - Stop test testGroupModification
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
