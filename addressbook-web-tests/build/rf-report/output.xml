@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generator="Robot 3.1.2 (Jython 2.7.0 on java1.8.0_241)" generated="20200414 19:27:16.541">
+<suite source="C:\JOB\GitHub\javafortesters\addressbook-web-tests\src\test\resources\rf" name="Rf" id="s1">
+<suite source="C:\JOB\GitHub\javafortesters\addressbook-web-tests\src\test\resources\rf\groups.robot" name="Groups" id="s1-s1">
+<kw type="setup" library="com.andrey.addressbook.rf.AddressbookKeywords" name="Init Application Manager">
+<msg level="INFO" timestamp="20200414 19:27:27.548">Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+1586906842023	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\mypc\\AppData\\Local\\Temp\\rust_mozprofileJLiHzF"
+1586906842466	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1586906843009	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1586906843009	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1586906843009	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1586906843010	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1586906845859	Marionette	INFO	Listening on port 50083
+1586906846144	Marionette	WARN	TLS certificate errors will be ignored for this session
+Apr 14, 2020 7:27:26 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C</msg>
+<status endtime="20200414 19:27:27.558" starttime="20200414 19:27:17.154" status="PASS"></status>
+</kw>
+<test name="Can Create Group With Valid Data" id="s1-s1-t1">
+<kw library="com.andrey.addressbook.rf.AddressbookKeywords" name="Get Group Count">
+<assign>
+<var>${old count}</var>
+</assign>
+<msg level="INFO" timestamp="20200414 19:27:27.997">${old count} = 2</msg>
+<status endtime="20200414 19:27:27.999" starttime="20200414 19:27:27.585" status="PASS"></status>
+</kw>
+<kw library="com.andrey.addressbook.rf.AddressbookKeywords" name="Create Group">
+<arguments>
+<arg>test name</arg>
+<arg>test header</arg>
+<arg>test footer</arg>
+</arguments>
+<status endtime="20200414 19:27:29.590" starttime="20200414 19:27:28.005" status="PASS"></status>
+</kw>
+<kw library="com.andrey.addressbook.rf.AddressbookKeywords" name="Get Group Count">
+<assign>
+<var>${new count}</var>
+</assign>
+<msg level="INFO" timestamp="20200414 19:27:29.782">${new count} = 3</msg>
+<status endtime="20200414 19:27:29.785" starttime="20200414 19:27:29.592" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Evaluate">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${old count} + 1</arg>
+</arguments>
+<assign>
+<var>${expected_count}</var>
+</assign>
+<msg level="INFO" timestamp="20200414 19:27:29.797">${expected_count} = 3</msg>
+<status endtime="20200414 19:27:29.798" starttime="20200414 19:27:29.788" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal As Integers">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${new count}</arg>
+<arg>${expected_count}</arg>
+</arguments>
+<status endtime="20200414 19:27:29.807" starttime="20200414 19:27:29.800" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20200414 19:27:29.809" starttime="20200414 19:27:27.568" status="PASS"></status>
+</test>
+<kw type="teardown" library="com.andrey.addressbook.rf.AddressbookKeywords" name="Stop Application Manager">
+<status endtime="20200414 19:27:32.993" starttime="20200414 19:27:29.818" status="PASS"></status>
+</kw>
+<status endtime="20200414 19:27:32.994" starttime="20200414 19:27:17.063" status="PASS"></status>
+</suite>
+<status endtime="20200414 19:27:33.023" starttime="20200414 19:27:16.577" status="PASS"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" name="Rf" id="s1">Rf</stat>
+<stat pass="1" fail="0" name="Groups" id="s1-s1">Rf.Groups</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
