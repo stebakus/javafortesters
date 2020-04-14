@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1586900725590" stop="1586900728243">
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1586903255739" stop="1586903262000">
     <name>Suite1</name>
     <test-cases>
-        <test-case start="1586900726380" stop="1586900728088" status="passed">
+        <test-case start="1586903258203" stop="1586903261649" status="passed">
             <name>testGroupModification</name>
             <steps/>
             <attachments/>
