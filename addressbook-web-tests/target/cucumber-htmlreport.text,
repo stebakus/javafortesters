@@ -1,0 +1,6 @@
+Feature: Groups
+
+  Scenario: Group creation                                                  [90m# bdd/groups.feature:3[0m
+    [32mGiven [0m[32ma set of groups[0m                                                   [90m# GroupStepDefinitions.loadGroups()[0m
+    [32mWhen [0m[32mI create a new group with name [0m[32m[1mxxx[0m[32m, header [0m[32m[1myyy[0m[32m and footer [0m[32m[1mzzz[0m      [90m# GroupStepDefinitions.createGroup(String,String,String)[0m
+    [32mThen [0m[32mthe new set if groups is equal to the old set with the added group[0m [90m# GroupStepDefinitions.verifyGroupCreated()[0m
