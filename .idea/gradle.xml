@@ -13,7 +13,6 @@
             <option value="$PROJECT_DIR$/addressbook-web-tests" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -26,7 +25,16 @@
             <option value="$PROJECT_DIR$/github-sample" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/gmail-sample" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/gmail-sample" />
+          </set>
+        </option>
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -39,7 +47,6 @@
             <option value="$PROJECT_DIR$/mantis-tests" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -52,7 +59,6 @@
             <option value="$PROJECT_DIR$/rest-sample" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -65,7 +71,6 @@
             <option value="$PROJECT_DIR$/sandbox" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -78,7 +83,6 @@
             <option value="$PROJECT_DIR$/soap-sample" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
